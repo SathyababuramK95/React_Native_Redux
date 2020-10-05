@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {StyleSheet, Text, View, Image } from 'react-native';
 import { Button ,Input,Item ,Container,Icon,Toast} from 'native-base';
 
-function SignUp({navigation,props}) {
+function SignUp(props) {
 
   let [email, setEmail] = useState('');
   let [userName, setUserName] = useState('');
@@ -65,7 +65,7 @@ function SignUp({navigation,props}) {
            justifyContent: 'center',
             alignItems: 'center'
           }}>
-            <Text style={styles.sectionText} onClick={() => navigation.navigate('Login')}>Already have an account, Sign In</Text>
+            <Text style={styles.sectionText} onClick={() => props.navigation.navigate('Login')}>Already have an account, Sign In</Text>
         </View>
     </Container>
   );

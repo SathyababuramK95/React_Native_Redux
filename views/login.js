@@ -2,9 +2,9 @@ import React from 'react';
 import {StyleSheet, Text, View, Image } from 'react-native';
 import { Button ,Input,Item ,Container,Icon} from 'native-base';
 import { connect } from 'react-redux';
-import { ChangeUserStatus, CHANGE_USER_LOGIN_STATUS } from '../reducers/action'
+import { ChangeUserStatus, StoreUserDetails } from '../reducers/action'
 
-function Login({navigation}) {
+function Login(props) {
 
   let [userName, setUserName] = useState('');
   let [password, setPassword] = useState('');
@@ -28,6 +28,10 @@ function Login({navigation}) {
       buttonText: "Okay",
       type: "success"
     })
+
+    props.ChangeUserStatus(true);
+    props.StoreUserDetails({userName : userName});
+
   }
 
     return(
@@ -54,7 +58,7 @@ function Login({navigation}) {
                 <Button rounded  info style={loginStyle.button}>
                     <Text style={{ color: '#fff', fontSize: 20,alignSelf : "center"}} onClick={() => doLogin()}>Login</Text>
                 </Button>
-                <Text onClick={() => navigation.navigate('Signup')} style={loginStyle.sectionText}>Create an account, Sign Up</Text>
+                <Text onClick={() => props.navigation.navigate('Signup')} style={loginStyle.sectionText}>Create an account, Sign Up</Text>
             </View>
         </View>
     )
@@ -137,4 +141,11 @@ const loginStyle = StyleSheet.create({
     },
 })
 
-export default Login;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        ChangeUserStatus: (s) => { dispatch(ChangeUserStatus(s)) },
+        StoreUserDetails : (s) => { dispatch(StoreUserDetails(s))}
+    };
+};
+
+export default connect (null,mapDispatchToProps)(Login);

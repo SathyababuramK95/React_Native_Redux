@@ -2,7 +2,7 @@ import React from 'react';
 import {Platform, StyleSheet, Text, View, Image,ProgressBarAndroid} from 'react-native';
 import { CheckBox, Button , ListItem,Input,Item, Container} from 'native-base';
 
-function Home({ navigation }) {
+function Home(props) {
   return (
     <View style={styles.container}>
         <View style = {styles.logo}>
@@ -11,10 +11,10 @@ function Home({ navigation }) {
         <Text style = {styles.logoText}>Travel App</Text>
         <Text style={styles.sectionText}>Best way to organize travels</Text>
         <View>
-          <Button rounded block info style = {styles.buttonStyle} onClick={() => navigation.navigate('Signup')}>
+          <Button rounded block info style = {styles.buttonStyle} onClick={() => props.navigation.navigate('Signup')}>
             <Text style={{ color: '#fff', fontSize: 20 }} >Sign Up</Text>
           </Button>
-          <Button rounded block info style={styles.buttonSignIn} onClick={() => navigation.navigate('Login')}>
+          <Button rounded block info style={styles.buttonSignIn} onClick={() => props.navigation.navigate('Login')}>
             <Text style={{ color: '#4FC3F7', fontSize: 20 }}>Sign In</Text>
           </Button>
         </View>
